@@ -64,7 +64,7 @@ spec:
       volumes:
         - name: jenkins-lts-data
           persistentVolumeClaim:
-            claimname: jenkins-lts-pvc
+            claimName: jenkins-lts-pvc
 ---
 apiVersion: v1
 kind: Service
