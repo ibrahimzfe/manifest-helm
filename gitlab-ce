@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: gitlab-pv
+spec:
+  capacity:
+    storage: 40Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: openebs
+  local:
+    path: "/mnt/backup/gitlab"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - k8s-worker2
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitlab-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: openebs
+  resources:
+    requests:
+      storage: 40Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab
+  labels:
+    name: gitlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: gitlab
+  template:
+    metadata:
+      labels:
+        name: gitlab
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-worker2
+      containers:
+      - name: gitlab
+        image: gitlab/gitlab-ce:17.0.1-ce.0
+        ports:
+        - containerPort: 443
+          name: https
+        - containerPort: 80
+          name: http
+        - containerPort: 22
+          name: ssh
+        volumeMounts:
+        - mountPath: /etc/gitlab
+          name: gitlab-volume
+          subPath: config
+        - mountPath: /var/log/gitlab
+          name: gitlab-volume
+          subPath: logs
+        - mountPath: /var/opt/gitlab
+          name: gitlab-volume
+          subPath: data
+      volumes:
+      - name: gitlab-volume
+        persistentVolumeClaim:
+          claimName: gitlab-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-service
+  labels:
+    name: gitlab-service
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  - name: https
+    port: 443
+    targetPort: 443
+    protocol: TCP
+  selector:
+    name: gitlab
