@@ -1,0 +1,27 @@
+catatan openebs.
+
+Jika terjadi error:
+
+Requirements
+The following minimum requirements must be met to use Blockbridge with Kubernetes:
+
+Kubernetes 1.21+.
+Ensure the host running the kubelet has iSCSI client support installed and iscsid enabled.
+
+For RedHat derivitives:
+
+yum install iscsi-initiator-utils
+systemctl enable --now iscsid
+For Debian derivitives (including Ubuntu):
+
+apt install open-iscsi
+systemctl enable --now iscsid
+For NVMe/TCP volumes, install and load the nvme-tcp kernel module:
+
+For RedHat derivitives:
+
+modprobe nvme-tcp && echo nvme-tcp > /etc/modules-load.d/blockbridge-nvme-tcp.conf
+For Debian derivitives (including Ubuntu):
+
+apt install -y linux-modules-extra-$(uname -r)
+modprobe nvme-tcp && echo nvme-tcp > /etc/modules-load.d/blockbridge-nvme-tcp.con
