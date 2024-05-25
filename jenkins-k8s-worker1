@@ -9,7 +9,7 @@ spec:
     - ReadWriteOnce
   storageClassName: openebs
   local:
-    path: "/mnt/backup/jenkins"
+    path: "/mnt/backup/jenkins-lts"
   nodeAffinity:
     required:
       nodeSelectorTerms:
