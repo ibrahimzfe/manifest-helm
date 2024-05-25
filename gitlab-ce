@@ -94,3 +94,22 @@ spec:
     protocol: TCP
   selector:
     name: gitlab
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: gitlab-ingress
+  namespace: apps
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: gitlab-devsecops-k8s.adira.co.id
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gitlab-service
+                port:
+                  number: 80
