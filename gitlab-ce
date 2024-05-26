@@ -60,9 +60,6 @@ spec:
           name: http
         - containerPort: 22
           name: ssh
-        env:
-        - name: GITLAB_OMNIBUS_CONFIG
-          value: "external_url 'https://gitlab-devsecops-k8s.adira.co.id'"
         volumeMounts:
         - mountPath: /etc/gitlab
           name: gitlab-volume
