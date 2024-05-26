@@ -72,7 +72,7 @@ spec:
   ports:
   - port: 9000
   selector:
-    name: sonarqube-lts
+    name: sonarqube
 ---
 kind: Ingress
 apiVersion: networking.k8s.io/v1
