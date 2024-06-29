@@ -25,3 +25,5 @@ For Debian derivitives (including Ubuntu):
 
 apt install -y linux-modules-extra-$(uname -r)
 modprobe nvme-tcp && echo nvme-tcp > /etc/modules-load.d/blockbridge-nvme-tcp.con
+
+atau jika ubuntu: modprobe nvme-tcp
