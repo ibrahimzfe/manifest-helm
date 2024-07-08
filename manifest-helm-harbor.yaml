@@ -18,7 +18,7 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
-  storageClass: "longhorn"
+  storageClass: ""
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -332,7 +332,7 @@ persistence:
     ##
     registry:
       existingClaim: ""
-      storageClass: "longhorn"
+      storageClass: ""
       subPath: ""
       accessModes:
         - ReadWriteOnce
@@ -350,7 +350,7 @@ persistence:
     ##
     jobservice:
       existingClaim: ""
-      storageClass: "longhorn"
+      storageClass: ""
       subPath: ""
       accessModes:
         - ReadWriteOnce
@@ -365,7 +365,7 @@ persistence:
     ## @param persistence.persistentVolumeClaim.trivy.selector Selector to match an existing Persistent Volume
     ##
     trivy:
-      storageClass: "longhorn"
+      storageClass: ""
       accessModes:
         - ReadWriteOnce
       size: 5Gi
@@ -452,7 +452,7 @@ persistence:
       v4auth: ""
       chunksize: ""
       rootdirectory: ""
-      storageClass: "longhorn"
+      storageClass: ""
       sse: ""
       multipartcopythresholdsize: ""
     ## Images/charts storage parameters when type is "swift"
