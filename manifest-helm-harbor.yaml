@@ -86,7 +86,7 @@ adminPassword: "@Dira2024"
 ## 4) if "exposureType" is "proxy" and "service.type" is "LoadBalancer",
 ## the "domain" should be the LoadBalancer IP
 ##
-externalURL: https://harbor.poc-devsecops-k8s.adira.co.id
+externalURL: https://harbor-devsecops-k8s.adira.co.id
 ## Note: If Harbor is exposed via Ingress, the NGINX server will not be used
 ## @param proxy.httpProxy The URL of the HTTP proxy server
 ## @param proxy.httpsProxy The URL of the HTTPS proxy server
@@ -216,7 +216,7 @@ ingress:
     controller: default
     ## @param ingress.core.hostname Default host for the ingress record
     ##
-    hostname: harbor.poc-devsecops-k8s.adira.co.id
+    hostname: harbor-devsecops-k8s.adira.co.id
     ## @param ingress.core.annotations [object] Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
     ## Use this parameter to set the required annotations for cert-manager, see
     ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
@@ -244,7 +244,7 @@ ingress:
     ## @param ingress.core.extraHosts An array with additional hostname(s) to be covered with the ingress record
     ## e.g:
     ## extraHosts:
-    ##   - name: harbor.poc-devsecops-k8s.adira.co.id
+    ##   - name: harbor-devsecops-k8s.adira.co.id
     ##     path: /
     ##
     extraHosts: []
@@ -262,8 +262,8 @@ ingress:
     ## e.g:
     ## extraTls:
     ## - hosts:
-    ##     - harbor.poc-devsecops-k8s.adira.co.id
-    ##   secretName: harbor.poc-devsecops-k8s.adira.co.id-tls
+    ##     - harbor-devsecops-k8s.adira.co.id
+    ##   secretName: harbor-devsecops-k8s.adira.co.id-tls
     ##
     extraTls: []
     ## @param ingress.core.secrets Custom TLS certificates as secrets
@@ -275,7 +275,7 @@ ingress:
     ## Please see README.md for more information
     ## e.g:
     ## secrets:
-    ##   - name: harbor.poc-devsecops-k8s.adira.co.id-tls
+    ##   - name: harbor-devsecops-k8s.adira.co.id-tls
     ##     key: |-
     ##       -----BEGIN RSA PRIVATE KEY-----
     ##       ...
@@ -688,7 +688,7 @@ nginx:
     existingSecret: ""
     ## @param nginx.tls.commonName The common name used to generate the self-signed TLS certificates
     ##
-    commonName: harbor.poc-devsecops-k8s.adira.co.id
+    commonName: harbor-devsecops-k8s.adira.co.id
   ## @param nginx.behindReverseProxy If NGINX is behind another reverse proxy, set to true
   ## if the reverse proxy already provides the 'X-Forwarded-Proto' header field.
   ## This is, for example, the case for the OpenShift HAProxy router.
@@ -3602,4 +3602,3 @@ metrics:
     ## @param metrics.serviceMonitor.jobLabel The name of the label on the target service to use as the job name in prometheus.
     ##
     jobLabel: ""
-
