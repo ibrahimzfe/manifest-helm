@@ -898,10 +898,10 @@ upgradeCheck:
   priorityClassName: ""
 
 ## Settings to for the Let's Encrypt ACME Issuer
-# certmanager-issuer:
+certmanager-issuer:
 #   # The email address to register certificates requested from Let's Encrypt.
 #   # Required if using Let's Encrypt.
-#   email: email@example.com
+  email: v.ibrahim.ibrahim@adira.co.id
 
 ## Installation & configuration of jetstack/cert-manager
 ## See requirements.yaml for current version
